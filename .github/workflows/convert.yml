@@ -24,13 +24,14 @@ jobs:
 
       - name: Convert .adoc to HTML
         run: |
-          mkdir -p ascii/htmlfiles
           for f in *.adoc; do
-            asciidoctor -o "ascii/htmlfiles/${f%.adoc}.html" "$f"
+            asciidoctor -o "${f%.adoc}.html" "$f"
           done
 
-      - name: Publish HTML artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: html-artifacts
-          path: ascii/htmlfiles
+      - name: Commit and push HTML files to the repository
+        run: |
+          git config user.name "AlphaCoder147"
+          git config user.email "thescholar8101@gmail.com"
+          git add *.html
+          git commit -m "Update HTML files"
+          git push origin main
