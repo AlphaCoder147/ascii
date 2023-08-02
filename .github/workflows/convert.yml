@@ -14,15 +14,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Asciidoctor
-        run: |
-          gem install asciidoctor
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7 # Adjust the version to match your project's Ruby version
+
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Install Asciidoctor using Bundler
+        run: bundle install
 
       - name: Convert .adoc to HTML
         run: |
           mkdir -p html-files
           for f in *.adoc; do
-            asciidoctor -o "html-files/${f%.adoc}.html" "$f"
+            bundle exec asciidoctor -o "html-files/${f%.adoc}.html" "$f"
           done
 
       - name: Publish HTML artifacts
