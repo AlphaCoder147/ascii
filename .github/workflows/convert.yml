@@ -24,13 +24,13 @@ jobs:
 
       - name: Convert .adoc to HTML
         run: |
-          mkdir -p html-files
+          mkdir -p htmlfiles
           for f in *.adoc; do
-            asciidoctor -o "html-files/${f%.adoc}.html" "$f"
+            asciidoctor -o "htmlfiles/${f%.adoc}.html" "$f"
           done
 
-      - name: Publish HTML artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: html-artifacts
-          path: html-files
+     # - name: Publish HTML artifacts
+     #   uses: actions/upload-artifact@v2
+     #   with:
+      #    name: html-artifacts
+       #   path: html-files
