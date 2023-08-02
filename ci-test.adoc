@@ -1,0 +1,9 @@
+= CI Testing
+:doctype: book
+
+== Introduction
+
+This is a test document for CI/CD Testing.
+
+== Getting Started
+All the .adoc and html files related to the CI/CD Pipeline will be pushed to this branch.
