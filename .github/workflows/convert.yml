@@ -19,17 +19,14 @@ jobs:
         with:
           ruby-version: 3.2.2 # Adjust the version to match your project's Ruby version
 
-      - name: Install Bundler
-        run: gem install bundler
-
-      - name: Install Asciidoctor using Bundler
-        run: bundle install
+      - name: Install Asciidoctor
+        run: gem install asciidoctor
 
       - name: Convert .adoc to HTML
         run: |
           mkdir -p html-files
           for f in *.adoc; do
-            bundle exec asciidoctor -o "html-files/${f%.adoc}.html" "$f"
+            asciidoctor -o "html-files/${f%.adoc}.html" "$f"
           done
 
       - name: Publish HTML artifacts
