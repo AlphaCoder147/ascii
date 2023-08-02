@@ -24,7 +24,7 @@ jobs:
 
       - name: Convert .adoc to HTML
         run: |
-          mkdir -p htmlfiles
+          mkdir -p ascii/htmlfiles
           for f in *.adoc; do
             asciidoctor -o "ascii/htmlfiles/${f%.adoc}.html" "$f"
           done
@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: html-artifacts
-          path: html-files
+          path: ascii/htmlfiles
