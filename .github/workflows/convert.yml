@@ -1,0 +1,32 @@
+name: Asciidoctor Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Convert .adoc to HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Asciidoctor
+        run: |
+          gem install asciidoctor
+
+      - name: Convert .adoc to HTML
+        run: |
+          mkdir -p html-files
+          for f in *.adoc; do
+            asciidoctor -o "html-files/${f%.adoc}.html" "$f"
+          done
+
+      - name: Publish HTML artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: html-artifacts
+          path: html-files
