@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7 # Adjust the version to match your project's Ruby version
+          ruby-version: 3.2.2 # Adjust the version to match your project's Ruby version
 
       - name: Install Bundler
         run: gem install bundler
